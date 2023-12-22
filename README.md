@@ -1,6 +1,7 @@
 # lapor_book
 
 A new Flutter project.
+in Dev mode
 
 ## Getting Started
 
