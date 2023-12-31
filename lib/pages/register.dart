@@ -97,7 +97,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                             nama = value;
                                           }),
                                       validator: noEmptyValidator,
-                                      decoration: customInputDecoration(" "))),
+                                      decoration: customInputDecoration(
+                                          "Nama Lengkap"))),
                               InputLayout(
                                   'Email',
                                   TextFormField(
@@ -105,7 +106,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                       email = value;
                                     }),
                                     validator: noEmptyValidator,
-                                    decoration: customInputDecoration(' '),
+                                    decoration: customInputDecoration(
+                                        'email@email.com'),
                                   )),
                               InputLayout(
                                 'Nomor Handphone',
@@ -114,7 +116,8 @@ class _RegisterPageState extends State<RegisterPage> {
                                     noHP = value;
                                   }),
                                   validator: noEmptyValidator,
-                                  decoration: customInputDecoration(' '),
+                                  decoration:
+                                      customInputDecoration('08xxxxxxx'),
                                 ),
                               ),
                               InputLayout(

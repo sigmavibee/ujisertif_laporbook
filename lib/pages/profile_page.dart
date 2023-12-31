@@ -1,7 +1,7 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lapor_book/components/styles.dart';
 import 'package:lapor_book/models/akun.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class Profile extends StatefulWidget {
   final Akun akun;
@@ -56,7 +56,7 @@ class _ProfileState extends State<Profile> {
               child: Text(
                 widget.akun.noHp,
                 style: TextStyle(
-                    color: primaryColor,
+                    color: darkColor,
                     fontWeight: FontWeight.bold,
                     fontSize: 20),
               ),

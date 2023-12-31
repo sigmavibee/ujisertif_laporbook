@@ -5,6 +5,7 @@ var warningColor = const Color(0xFFE9C46A);
 var dangerColor = const Color(0xFFE76F51);
 var successColor = const Color(0xFF2A9D8F);
 var greyColor = const Color(0xFFEAEAEA);
+var darkColor = const Color(0xFF222831);
 
 TextStyle headerStyle({int level = 1, bool dark = true}) {
   List<double> sizes = [30, 24, 20];

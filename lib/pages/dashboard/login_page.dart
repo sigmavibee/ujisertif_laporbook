@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../components/input_widget.dart';
-import '../components/styles.dart';
-import '../components/validators.dart';
+import '../../components/input_widget.dart';
+import '../../components/styles.dart';
+import '../../components/validators.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginPage extends StatefulWidget {

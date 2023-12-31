@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:lapor_book/components/styles.dart';
 import 'package:lapor_book/models/akun.dart';
+import 'package:lapor_book/pages/dashboard/alllaporan_page.dart';
+import 'package:lapor_book/pages/dashboard/mylaporan_page.dart';
 import 'package:lapor_book/pages/profile_page.dart';
 
 class DashboardPage extends StatelessWidget {
@@ -36,8 +38,8 @@ class _DashboardFull extends State<DashboardFull> {
     super.initState();
     getAkun();
     pages = <Widget>[
-      //   AllLaporan(akun: akun),
-      //   MyLaporan(akun: akun),
+      AllLaporan(akun: akun),
+      MyLaporan(akun: akun),
       Profile(akun: akun),
     ];
   }
@@ -53,6 +55,8 @@ class _DashboardFull extends State<DashboardFull> {
     email: '',
     role: '',
   );
+
+  bool _isLoading = false;
 
   void getAkun() async {
     setState(() {
@@ -89,8 +93,6 @@ class _DashboardFull extends State<DashboardFull> {
       });
     }
   }
-
-  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
