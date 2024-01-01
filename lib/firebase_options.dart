@@ -17,16 +17,16 @@ import 'package:flutter/foundation.dart'
 class DefaultFirebaseOptions {
   static FirebaseOptions get currentPlatform {
     if (kIsWeb) {
-      return web;
+      throw UnsupportedError(
+        'DefaultFirebaseOptions have not been configured for web - '
+        'you can reconfigure this by running the FlutterFire CLI again.',
+      );
     }
     switch (defaultTargetPlatform) {
       case TargetPlatform.android:
         return android;
       case TargetPlatform.iOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for ios - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return ios;
       case TargetPlatform.macOS:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for macos - '
@@ -49,21 +49,20 @@ class DefaultFirebaseOptions {
     }
   }
 
-  static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyBzlYtAWo5Pu2H6MN1_yIi3qGi7QR0BPdI',
-    appId: '1:210930725395:web:b094a09e7f4e7e960ec5e6',
-    messagingSenderId: '210930725395',
-    projectId: 'lapor-book-3d2b7',
-    authDomain: 'lapor-book-3d2b7.firebaseapp.com',
-    storageBucket: 'lapor-book-3d2b7.appspot.com',
-    measurementId: 'G-45K20Z6G2T',
-  );
-
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyA1z1G5_kOH-BxHsV_ZvQSE5CtyXPYNl3k',
     appId: '1:210930725395:android:0af54408b00560520ec5e6',
     messagingSenderId: '210930725395',
     projectId: 'lapor-book-3d2b7',
     storageBucket: 'lapor-book-3d2b7.appspot.com',
+  );
+
+  static const FirebaseOptions ios = FirebaseOptions(
+    apiKey: 'AIzaSyDxgnr4M42Gmw8k6B2Al-zrWVOCTc5Iz7E',
+    appId: '1:210930725395:ios:2038e0d1f789d4e70ec5e6',
+    messagingSenderId: '210930725395',
+    projectId: 'lapor-book-3d2b7',
+    storageBucket: 'lapor-book-3d2b7.appspot.com',
+    iosBundleId: 'com.example.laporBook',
   );
 }

@@ -6,12 +6,12 @@ import 'package:lapor_book/pages/dashboard/dashboard_page.dart';
 import 'package:lapor_book/pages/splash_page.dart';
 import 'package:lapor_book/pages/register.dart';
 import 'package:lapor_book/pages/dashboard/login_page.dart';
+// import 'package:firebase_app_check/firebase_app_check.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  // await FirebaseAppCheck.instance.activate(webRecaptchaSiteKey: 'YOUR_RECAPTCHA_SITE_KEY');
 
   runApp(MaterialApp(
     title: 'Lapor Book',

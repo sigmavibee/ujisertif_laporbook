@@ -28,7 +28,7 @@ class _ProfileState extends State<Profile> {
         child: Column(
           children: [
             const SizedBox(
-              height: 10,
+              height: 100,
             ),
             Text(
               widget.akun.nama,
@@ -44,7 +44,9 @@ class _ProfileState extends State<Profile> {
                   fontWeight: FontWeight.bold,
                   fontSize: 20),
             ),
-            const SizedBox(height: 40),
+            const SizedBox(
+              height: 40,
+            ),
             Container(
               width: double.infinity,
               padding: const EdgeInsets.symmetric(vertical: 10),
@@ -56,7 +58,7 @@ class _ProfileState extends State<Profile> {
               child: Text(
                 widget.akun.noHp,
                 style: TextStyle(
-                    color: darkColor,
+                    color: primaryColor,
                     fontWeight: FontWeight.bold,
                     fontSize: 20),
               ),
@@ -67,7 +69,7 @@ class _ProfileState extends State<Profile> {
               decoration: BoxDecoration(
                 border: Border(
                   bottom: BorderSide(color: primaryColor),
-                ),
+                ), // Sudut border
               ),
               child: Text(
                 widget.akun.email,
@@ -77,21 +79,23 @@ class _ProfileState extends State<Profile> {
                     fontSize: 20),
               ),
             ),
-            const SizedBox(height: 35),
-            SizedBox(
+            const SizedBox(
+              height: 35,
+            ),
+            Container(
               width: double.infinity,
               child: FilledButton(
                 style: buttonStyle,
                 onPressed: () {
                   keluar(context);
                 },
-                child: const Text(
-                  'Logout',
-                  style: TextStyle(color: Colors.white, fontSize: 20),
-                ),
+                child: const Text('Logout',
+                    style: TextStyle(color: Colors.white, fontSize: 20)),
               ),
             ),
-            const SizedBox(height: 35),
+            const SizedBox(
+              height: 35,
+            ),
           ],
         ),
       ),

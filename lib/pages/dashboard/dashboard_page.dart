@@ -24,26 +24,6 @@ class DashboardFull extends StatefulWidget {
 }
 
 class _DashboardFull extends State<DashboardFull> {
-  int _selectedIndex = 0;
-  List<Widget> pages = [];
-
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    getAkun();
-    pages = <Widget>[
-      AllLaporan(akun: akun),
-      MyLaporan(akun: akun),
-      Profile(akun: akun),
-    ];
-  }
-
   final _auth = FirebaseAuth.instance;
   final _firestore = FirebaseFirestore.instance;
 
@@ -55,8 +35,6 @@ class _DashboardFull extends State<DashboardFull> {
     email: '',
     role: '',
   );
-
-  bool _isLoading = false;
 
   void getAkun() async {
     setState(() {
@@ -78,15 +56,15 @@ class _DashboardFull extends State<DashboardFull> {
             nama: userData['nama'],
             noHp: userData['noHP'],
             email: userData['email'],
-            docId: userData['docId'],
             role: userData['role'],
+            docId: userData['docId'],
           );
         });
       }
     } catch (e) {
-      final snackbar = SnackBar(content: Text(e.toString()));
+      final snackbar = SnackBar(content: Text('Error fetching data: $e'));
       ScaffoldMessenger.of(context).showSnackBar(snackbar);
-      print(e);
+      print('Error fetching data: $e');
     } finally {
       setState(() {
         _isLoading = false;
@@ -94,8 +72,30 @@ class _DashboardFull extends State<DashboardFull> {
     }
   }
 
+  bool _isLoading = false;
+
+  int _selectedIndex = 0;
+  List<Widget> pages = [];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getAkun();
+  }
+
   @override
   Widget build(BuildContext context) {
+    pages = <Widget>[
+      AllLaporan(akun: akun),
+      MyLaporan(akun: akun),
+      Profile(akun: akun),
+    ];
     return Scaffold(
         floatingActionButton: FloatingActionButton(
           backgroundColor: primaryColor,
@@ -103,7 +103,9 @@ class _DashboardFull extends State<DashboardFull> {
             Icons.add,
             size: 35,
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context, '/add', arguments: {'akun': akun});
+          },
         ),
         appBar: AppBar(
           backgroundColor: primaryColor,
