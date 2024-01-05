@@ -8,7 +8,7 @@ var greyColor = const Color(0xFFEAEAEA);
 var darkColor = const Color(0xFF222831);
 
 TextStyle headerStyle({int level = 1, bool dark = true}) {
-  List<double> sizes = [30, 24, 20];
+  List<double> sizes = [30, 24, 20, 16, 12];
   return TextStyle(
       fontSize: sizes[level - 1],
       fontWeight: FontWeight.bold,
