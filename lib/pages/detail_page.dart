@@ -1,5 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:lapor_book/components/komen_dialog.dart';
+//import 'package:lapor_book/components/komen_dialog.dart';
 import 'package:lapor_book/components/status_dialog.dart';
 import 'package:lapor_book/components/styles.dart';
 import 'package:lapor_book/models/laporan.dart';
@@ -16,6 +17,7 @@ class DetailPage extends StatefulWidget {
 class _DetailPageState extends State<DetailPage> {
   final bool _isLoading = false;
   String? status;
+  final firestore = FirebaseFirestore.instance;
 
   Future launch(String uri) async {
     if (uri == '') return;
@@ -34,6 +36,8 @@ class _DetailPageState extends State<DetailPage> {
       },
     );
   }
+
+  bool isLiked = false;
 
   @override
   Widget build(BuildContext context) {
@@ -86,6 +90,27 @@ class _DetailPageState extends State<DetailPage> {
                           textStatus(
                               laporan.instansi, Colors.white, Colors.black),
                         ],
+                      ),
+                      SizedBox(
+                        width: 100,
+                        child: ElevatedButton(
+                          onPressed: isLiked
+                              ? null
+                              : () {
+                                  like(context, akun, laporan);
+                                  setState(() {
+                                    isLiked = true;
+                                  });
+                                },
+                          style: TextButton.styleFrom(
+                            foregroundColor: Colors.white,
+                            backgroundColor: primaryColor,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          child: Text('Like'),
+                        ),
                       ),
                       const SizedBox(height: 20),
                       ListTile(
@@ -149,29 +174,60 @@ class _DetailPageState extends State<DetailPage> {
     );
   }
 
-  Container textStatus(String text, var bgcolor, var textcolor,
-      {double? fontSize}) {
-    return Container(
-        width: 150,
-        padding: const EdgeInsets.all(8),
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-            color: bgcolor,
-            border: Border.all(width: 1, color: primaryColor),
-            borderRadius: BorderRadius.circular(16)),
-        child: fontSize != null
-            ? Text(
-                text,
-                style: TextStyle(
-                  color: textcolor,
-                ),
-              )
-            : Text(
-                text,
-                style: TextStyle(
-                  color: textcolor,
-                  fontSize: fontSize,
-                ),
-              ));
+  Future<void> like(BuildContext context, Akun akun, Laporan laporan) async {
+    CollectionReference laporanCollection = firestore.collection('laporan');
+    CollectionReference akunCollection = firestore.collection('akun');
+
+    try {
+      await laporanCollection.doc(laporan.docId).update({
+        'likes': FieldValue.arrayUnion([akun.nama]),
+      });
+      await akunCollection.doc(akun.docId).update({
+        'likes': FieldValue.arrayUnion([laporan.docId]),
+      });
+
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Berhasil Menyukai Laporan'),
+          ),
+        );
+      }
+    } on FirebaseException catch (e) {
+      if (context.mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Gagal Menyukai Laporan'),
+          ),
+        );
+      }
+      throw Exception('GAGAL MENYUKAI LAPORAN ${e.message}');
+    }
   }
+}
+
+Container textStatus(String text, var bgcolor, var textcolor,
+    {double? fontSize}) {
+  return Container(
+      width: 150,
+      padding: const EdgeInsets.all(8),
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+          color: bgcolor,
+          border: Border.all(width: 1, color: primaryColor),
+          borderRadius: BorderRadius.circular(16)),
+      child: fontSize != null
+          ? Text(
+              text,
+              style: TextStyle(
+                color: textcolor,
+              ),
+            )
+          : Text(
+              text,
+              style: TextStyle(
+                color: textcolor,
+                fontSize: fontSize,
+              ),
+            ));
 }

@@ -138,8 +138,8 @@ class _ListItemState extends State<ListItem> {
                               vertical: BorderSide(width: 1))),
                       alignment: Alignment.center,
                       child: Text(
-                          DateFormat('dd/MM/yyyy')
-                              .format(widget.laporan.tanggal),
+                          (widget.laporan.likes?.length ?? 0).toString() +
+                              ' Likes',
                           style: headerStyle(level: 5, dark: false)),
                     ),
                   )

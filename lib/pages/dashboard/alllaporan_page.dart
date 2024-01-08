@@ -44,6 +44,7 @@ class _AllLaporanState extends State<AllLaporan> {
               tanggal: documents['tanggal'].toDate(),
               maps: documents.data()['maps'],
               komentar: listKomentar,
+              likes: documents.data()['likes'],
             ),
           );
         }
