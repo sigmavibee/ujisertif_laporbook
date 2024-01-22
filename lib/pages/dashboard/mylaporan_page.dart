@@ -35,21 +35,20 @@ class _MyLaporanState extends State<MyLaporan> {
             return komentar.toString(); // Mengasumsikan komentar adalah String
           }).toList();
 
-          listLaporan.add(
-            Laporan(
-              uid: documents.data()['uid'],
-              docId: documents.data()['docId'],
-              judul: documents.data()['judul'],
-              instansi: documents.data()['instansi'],
-              deskripsi: documents.data()['deskripsi'],
-              nama: documents.data()['nama'],
-              status: documents.data()['status'],
-              gambar: documents.data()['gambar'],
-              tanggal: documents['tanggal'].toDate(),
-              maps: documents.data()['maps'],
-              komentar: listKomentar,
-            ),
-          );
+          listLaporan.add(Laporan(
+            uid: documents.data()['uid'],
+            docId: documents.data()['docId'],
+            judul: documents.data()['judul'],
+            instansi: documents.data()['instansi'],
+            deskripsi: documents.data()['deskripsi'],
+            nama: documents.data()['nama'],
+            status: documents.data()['status'],
+            gambar: documents.data()['gambar'],
+            tanggal: documents['tanggal'].toDate(),
+            maps: documents.data()['maps'],
+            komentar: listKomentar,
+            likes: documents.data()['likes'],
+          ));
         }
       });
     } catch (e) {
@@ -58,6 +57,7 @@ class _MyLaporanState extends State<MyLaporan> {
       print(e);
     }
   }
+  // null buat intansi problem kalo ga diisi
 
   @override
   Widget build(BuildContext context) {

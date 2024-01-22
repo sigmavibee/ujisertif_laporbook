@@ -34,6 +34,7 @@ class _DashboardFull extends State<DashboardFull> {
     noHp: '',
     email: '',
     role: '',
+    picprofile: '',
   );
 
   void getAkun() async {
@@ -58,6 +59,7 @@ class _DashboardFull extends State<DashboardFull> {
             email: userData['email'],
             role: userData['role'],
             docId: userData['docId'],
+            picprofile: userData['picprofile'],
           );
         });
       }

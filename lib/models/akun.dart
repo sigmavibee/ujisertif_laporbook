@@ -6,6 +6,7 @@ class Akun {
   final String noHp;
   final String email;
   final String role;
+  final String picprofile;
 
   Akun({
     required this.uid,
@@ -14,5 +15,6 @@ class Akun {
     required this.noHp,
     required this.email,
     required this.role,
+    required this.picprofile,
   });
 }

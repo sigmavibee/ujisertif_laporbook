@@ -185,6 +185,7 @@ class _DetailPageState extends State<DetailPage> {
       await akunCollection.doc(akun.docId).update({
         'likes': FieldValue.arrayUnion([laporan.docId]),
       });
+      //timestamp
 
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(

@@ -47,7 +47,9 @@ class _RegisterPageState extends State<RegisterPage> {
         'email': email,
         'noHP': noHP,
         'docId': docId,
-        'role': 'user'
+        'role': 'user',
+        'picprofile':
+            'https://cdn.vectorstock.com/i/preview-1x/08/19/gray-photo-placeholder-icon-design-ui-vector-35850819.jpg'
       });
 
       Navigator.pushNamedAndRemoveUntil(
